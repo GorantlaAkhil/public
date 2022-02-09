@@ -1,0 +1,8 @@
+RestTemplate restTemplate = new RestTemplate();
+        String baseUrl = "http://localhost:8080/acceptVisualizer";
+        VisualizerResponse visualizerResponse = new VisualizerResponse();
+        visualizerResponse.setMs_name("Account");
+        visualizerResponse.setActive(true);
+        HttpEntity<VisualizerResponse> request = new HttpEntity<>(visualizerResponse);
+        ResponseEntity<VisualizerResponse> result = restTemplate.postForEntity(baseUrl,request,VisualizerResponse.class);
+        System.out.println(visualizerResponse);
