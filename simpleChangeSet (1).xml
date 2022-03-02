@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    <changeSet author="student" id="changelog-1.0">
+        <createTable tableName="Student">
+            <column name="stdId" type="TEXT">
+                <constraints nullable="true" primaryKey="true" unique="false"/>
+            </column>
+            <column name="stdName" type="TEXT">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="address" id="changelog-2.0">
+        <createTable tableName="Address">
+            <column name="AddressId" type="TEXT">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="AddName" type="TEXT">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="parent" id="changelog-3.0">
+        <createTable tableName="Parent">
+            <column name="parentId" type="TEXT">
+                <constraints nullable="true" primaryKey="true" unique="false"/>
+            </column>
+            <column name="ParentName" type="TEXT">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="addressFk" id="changelog-2.0">
+        <addForeignKeyConstraint  baseColumnNames="stdId"
+                                  baseTableName="Student"
+                                  referencedTableName="Address"
+                                  referencedColumnNames="AddressId"
+                                  />
+    </changeSet>
+    <changeSet author="parentFk" id="changelog-2.0">
+        <addForeignKeyConstraint  baseColumnNames="stdId"
+                                  baseTableName="Student"
+                                  referencedTableName="Parent"
+                                  referencedColumnNames="parentId"/>
+    </changeSet>
+</databaseChangeLog>

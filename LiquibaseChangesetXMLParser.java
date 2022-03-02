@@ -2,6 +2,7 @@ package com.visualizer.asci.visualizer.parser;
 
 import com.visualizer.asci.visualizer.model.Column;
 import com.visualizer.asci.visualizer.model.ForeignKeyColumn;
+import com.visualizer.asci.visualizer.model.RelationalMappings;
 import com.visualizer.asci.visualizer.model.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -313,7 +314,14 @@ class LiquibaseChangesetXMLParser implements LiquibaseChangesetParser, ILiquibas
         ForeignKeyColumn foreignKeyColumn = new ForeignKeyColumn();
         foreignKeyColumn.setForeign_key_column(referencedColumn.getColumn_name());
         foreignKeyColumn.setForeign_key_table(referencedTable.getTable_name());
+        if(referencedColumn.isPrimary_key()){
+            foreignKeyColumn.setRelationType(RelationalMappings.ONE_TO_ONE.name());
+        }
+        else{
+            foreignKeyColumn.setRelationType(RelationalMappings.ONE_TO_MANY.name());
+        }
         baseColumn.getRelation().add(foreignKeyColumn);
+
 
     }
 

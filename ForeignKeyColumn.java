@@ -7,6 +7,7 @@ import java.util.Objects;
 @Data
 public class ForeignKeyColumn {
 
+    private String relationType;
     private String foreign_key_column;
     private String foreign_key_table;
 
